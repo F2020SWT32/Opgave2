@@ -55,19 +55,19 @@ namespace Ladeskab
     public interface IDisplay
     {
 
-        void CloseDoorMsg();
+        public void CloseDoorMsg();
 
-        void CloseDoorErrorMsg();
+        public void CloseDoorErrorMsg();
 
-        void UnlockDoorMsg();
+        public void UnlockDoorMsg();
 
-        void UnlockDoorErrorMsg();
+        public void UnlockDoorErrorMsg();
 
-        void Fullycharged();
+        public void Fullycharged();
 
-        void Opladning();
+        public void Opladning();
 
-        void ErrorMsgCharge();
+        public void ErrorMsgCharge();
     }
 
 
