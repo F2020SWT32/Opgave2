@@ -24,15 +24,15 @@ namespace Ladeskab.Tests
         {
             var WasCalled = false;
             _uut.DoorOpened += (o, e) => {WasCalled = true;};
-
+            _uut.openDoor();
             Assert.IsTrue(WasCalled);
         }
         
         public void TestDoorClosed()
         {
             var WasCalled = false;
-            _uut.DoorClosed += (o, e) => {WasCalled = true;};
-
+            _uut.DoorOpened += (o, e) => {WasCalled = true;};
+            _uut.closeDoor();
             Assert.IsTrue(WasCalled);
         }
     }
