@@ -6,7 +6,16 @@ namespace Ladeskab
 {
     public class Display : IDisplay
     {
-        
+        public void RFIDMsg()
+        {
+            Console.WriteLine("Indlæs RFID");
+        }
+
+        public void ConnectMsg()
+        {
+            Console.WriteLine("Tilslut telefonen");
+        }
+
         public void CloseDoorMsg()
         {
             Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op. ");
@@ -46,19 +55,19 @@ namespace Ladeskab
     public interface IDisplay
     {
 
-        void CloseDoorMsg();
+        public void CloseDoorMsg();
 
-        void CloseDoorErrorMsg();
+        public void CloseDoorErrorMsg();
 
-        void UnlockDoorMsg();
+        public void UnlockDoorMsg();
 
-        void UnlockDoorErrorMsg();
+        public void UnlockDoorErrorMsg();
 
-        void Fullycharged();
+        public void Fullycharged();
 
-        void Opladning();
+        public void Opladning();
 
-        void ErrorMsgCharge();
+        public void ErrorMsgCharge();
     }
 
 
