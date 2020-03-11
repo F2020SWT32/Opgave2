@@ -22,6 +22,16 @@ namespace Ladeskab
         {
             DoorClosed.Invoke(this, EventArgs.Empty);
         }
+        
+        public void LockDoor()
+        {
+            // TODO: implement LockDoor
+        }
+        
+        public void UnlockDoor()
+        {
+            // TODO: implement UnlockDoor
+        }
 
     }
 

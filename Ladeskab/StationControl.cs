@@ -19,22 +19,22 @@ namespace Ladeskab
 
         // Her mangler flere member variable
         private LadeskabState _state;
-        private Display _display;
-        private Log _log;
-        private ChargeControl _chargeControl;
+        private IDisplay _display;
+        private ILogFile _log;
+        private IChargeControl _chargeControl;
         private int _oldId;
-        private Door _door;
-        private RfidReader _reader;
+        private IDoor _door;
+        private IRfidReader _reader;
 
 
-        StationControl(IDisplay _display, ILog _log, IChargeControl _chargecontrol, IDoor _door, IRfidReader _reader)
+        public StationControl(IDisplay _display, ILogFile _log, IChargeControl _chargecontrol, IDoor _door, IRfidReader _reader)
         {
             this._display = _display;
             this._log = _log;
             this._chargeControl = _chargeControl;
             this._door = _door;
             _door.DoorOpened += DoorOpenedHandler;
-            _door.DoopClosed += DoorClosedHandler;
+            _door.DoorClosed += DoorClosedHandler;
             this._reader = _reader;
             _reader.RfidDetected += RfidDetectedHandler;
             _oldId = 0;
@@ -52,7 +52,7 @@ namespace Ladeskab
             {
                 case LadeskabState.Available:
                     // Check for ladeforbindelse
-                    if (_chargecontrol.isConnected())
+                    if (_chargeControl.IsConnected())
                     {
                         _door.LockDoor();
                         _chargeControl.StartCharge();
@@ -78,10 +78,10 @@ namespace Ladeskab
                     // Check for correct ID
                     if (arg.Id == _oldId)
                     {
-                        _charger.StopCharge();
+                        _chargeControl.StopCharge();
                         _door.UnlockDoor();
 
-                        _log.writeLog(2, _oldId);
+                        _log.logWrite(2, _oldId);
                         _display.UnlockDoorMsg();
                         
                         _state = LadeskabState.Available;
@@ -97,16 +97,16 @@ namespace Ladeskab
         }
 
 
-        private void OpenDoorHandler(object sender)
+        private void DoorOpenedHandler(object sender, EventArgs args)
         {
             _display.ConnectMsg();
-            LadeskabState.DoorOpen;
+            _state = LadeskabState.DoorOpen;
         }
 
-        private void ClosedDoorHandler(object sender)
+        private void DoorClosedHandler(object sender, EventArgs args)
         {
             _display.RFIDMsg();
-            LadeskabState.Available;
+            _state = LadeskabState.Available;
         }
         // Her mangler de andre trigger handlere
     }

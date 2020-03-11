@@ -6,6 +6,10 @@ namespace Ladeskab
     {
         public event EventHandler DoorOpened;
         public event EventHandler DoorClosed;
+        
+        public void LockDoor();
+        public void UnlockDoor();
+        
     }
 
 }
