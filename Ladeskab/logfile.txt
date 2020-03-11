@@ -1,3 +1,0 @@
-04/03/2020 15:45:47: Skab låst med RFID: 123456
-04/03/2020 15:46:31: Skab låst op med RFID: 123456
-04/03/2020 15:46:44: Skab låst med RFID: 12345
