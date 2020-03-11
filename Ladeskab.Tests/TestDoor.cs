@@ -20,8 +20,19 @@ namespace Ladeskab.Tests
         }
 
         [Test]
-        public void TestDoorOpened()
+        public void TestDoorOpenedWhenLocked()
         {
+            _uut.LockDoor();
+            var WasCalled = false;
+            _uut.DoorOpened += (o, e) => {WasCalled = true;};
+            _uut.openDoor();
+            Assert.IsFalse(WasCalled);
+        }
+
+        [Test]
+        public void TestDoorOpenedWhenUnlocked()
+        {
+            _uut.UnlockDoor();
             var WasCalled = false;
             _uut.DoorOpened += (o, e) => {WasCalled = true;};
             _uut.openDoor();
