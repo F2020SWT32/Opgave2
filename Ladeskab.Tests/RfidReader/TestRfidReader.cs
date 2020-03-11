@@ -20,6 +20,7 @@ namespace Ladeskab.Tests
 		[TestCase(0)]
 		public void TestRfidDetectedEvent(int id)
 		{
+			
 			int arg = -1;
 			_uut.RfidDetected += (o, args) =>
 			{
