@@ -21,6 +21,7 @@ namespace Ladeskab
         // Her mangler flere member variable
         private LadeskabState _state;
         private IUsbCharger _charger;
+        private IDisplay _display;
         private int _oldId;
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
@@ -44,12 +45,12 @@ namespace Ladeskab
                             writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", id);
                         }
 
-                        Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
+                        _display.CloseDoorMsg();
                         _state = LadeskabState.Locked;
                     }
                     else
                     {
-                        Console.WriteLine("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
+                        _display.CloseDoorErrorMsg();
                     }
 
                     break;
@@ -69,12 +70,12 @@ namespace Ladeskab
                             writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", id);
                         }
 
-                        Console.WriteLine("Tag din telefon ud af skabet og luk døren");
+                        _display.UnlockDoorMsg();
                         _state = LadeskabState.Available;
                     }
                     else
                     {
-                        Console.WriteLine("Forkert RFID tag");
+                        _display.UnlockDoorErrorMsg();
                     }
 
                     break;

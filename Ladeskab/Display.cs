@@ -4,16 +4,63 @@ using System.Text;
 
 namespace Ladeskab
 {
-    public class Display
+    public class Display : IDisplay
     {
-        public string Msg { get; set; }
         
-        public void ShowMsg()
+        public void CloseDoorMsg()
         {
-            Console.WriteLine(this.Msg);
+            Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op. ");
         }
 
+        public void CloseDoorErrorMsg()
+        {
+            Console.WriteLine("Din telefon er ikke ordentligt tilsluttet prøv igen. ");
+        }
+
+        public void UnlockDoorMsg()
+        {
+            Console.WriteLine("Tag din telefon ud af skabet og luk døren. ");
+        }
+
+        public void UnlockDoorErrorMsg()
+        {
+            Console.WriteLine("Forkert RFID prøv igen. ");
+        }
+
+        public void Fullycharged()
+        {
+            Console.WriteLine("Telefon er fuld opladet. ");
+        }
+
+        public void Opladning()
+        {
+            Console.WriteLine("Telefonen er under opladning. ");
+        }
+
+        public void ErrorMsgCharge()
+        {
+            Console.WriteLine("Error, Træk stikket ud. ");
+        }
     }
+
+    public interface IDisplay
+    {
+
+        void CloseDoorMsg();
+
+        void CloseDoorErrorMsg();
+
+        void UnlockDoorMsg();
+
+        void UnlockDoorErrorMsg();
+
+        void Fullycharged();
+
+        void Opladning();
+
+        void ErrorMsgCharge();
+    }
+
 
     /*
     public class DisplayEventArgs : EventArgs
