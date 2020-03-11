@@ -3,7 +3,7 @@ using System;
 
 namespace Ladeskab
 {
-	class RfidReader : IRfidReader
+	public class RfidReader : IRfidReader
 	{
 		
 		public void OnRfidRead(int id)

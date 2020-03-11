@@ -7,12 +7,12 @@ namespace Ladeskab
 	{
 		
 		private IUsbCharger _usbCharger;
-		private IDisplay _display;
+		//private IDisplay _display;
 		
-		public ChargeControl(IUsbCharger usbCharger, IDisplay display)
+		public ChargeControl(IUsbCharger usbCharger/*, IDisplay display*/)
 		{
 			_usbCharger = usbCharger;
-			_display = display;
+			//_display = display;
 			usbCharger.CurrentValueEvent += CurrentValueEventHandler;
 		}
 		
