@@ -10,7 +10,8 @@ namespace Ladeskab
 				// Assemble your system here from all the classes
 			
 			RfidReader rfidReader = new RfidReader();
-			StationControl controller = new StationControl(rfidReader);
+			UsbChargerSimulator usbCharger = new UsbChargerSimulator();
+			StationControl controller = new StationControl(rfidReader, usbCharger);
 			
             bool finish = false;
             do

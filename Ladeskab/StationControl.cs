@@ -18,11 +18,11 @@ namespace Ladeskab
             DoorOpen
         };
 		
-		public StationControl(IRfidReader reader)
+		public StationControl(IRfidReader reader, IUsbCharger charger)
 		{
 			_rfidReader = reader;
 			reader.RfidDetected += RfidDetected;
-			_charger = new UsbChargerSimulator();
+			_charger = charger;
 		}
 
         // Her mangler flere member variable
