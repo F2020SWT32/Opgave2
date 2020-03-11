@@ -28,6 +28,7 @@ namespace Ladeskab.Tests
             Assert.IsTrue(WasCalled);
         }
         
+        [Test]
         public void TestDoorClosed()
         {
             var WasCalled = false;
