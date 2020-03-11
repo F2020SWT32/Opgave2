@@ -11,8 +11,8 @@ namespace Ladeskab
 
 		private string logFile = "logfile.txt";
 
-		public LogFile();
-		public logWrite(int arg, int rfid)
+		public LogFile() {}
+		public void logWrite(int arg, int rfid)
 		{
 			using (var writer = File.AppendText(logFile))
 			{
@@ -31,6 +31,6 @@ namespace Ladeskab
 
 	public interface ILogFile
 	{
-		public logWrite(int arg, int rfid);
+		public void logWrite(int arg, int rfid);
 	}
 }
