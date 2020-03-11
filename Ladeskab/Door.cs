@@ -8,10 +8,10 @@ using UsbSimulator;
 
 namespace Ladeskab
 {
-    public class door : IDoor
+    public class Door : IDoor
     {
-        event EventHandler DoorOpened;
-        event EventHandler DoorClosed;
+        public event EventHandler DoorOpened;
+        public event EventHandler DoorClosed;
 
         
         public void openDoor()
