@@ -62,5 +62,133 @@ namespace Ladeskab.Tests
 
             Assert.AreEqual(CurrentConsoleOut, Console.Out);
         }
+
+        [Test]
+        public void TestAfConnectMsg()
+        {
+            var CurrentConsoleOut = Console.Out;
+
+            string text = "Tilslut telefonen\r\n";
+
+            using (var ConsoleOutput = new ConsoleOutput())
+            {
+                _uut.ConnectMsg();
+                Assert.AreEqual(text, ConsoleOutput.GetOuput());
+            }
+
+            Assert.AreEqual(CurrentConsoleOut, Console.Out);
+        }
+
+        [Test]
+        public void TestAfCloseDoorMsg()
+        {
+            var CurrentConsoleOut = Console.Out;
+
+            string text = "Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op. \r\n";
+
+            using (var ConsoleOutput = new ConsoleOutput())
+            {
+                _uut.CloseDoorMsg();
+                Assert.AreEqual(text, ConsoleOutput.GetOuput());
+            }
+
+            Assert.AreEqual(CurrentConsoleOut, Console.Out);
+        }
+
+        [Test]
+        public void TestAfCloseDoorErrorMsg()
+        {
+            var CurrentConsoleOut = Console.Out;
+
+            string text = "Din telefon er ikke ordentligt tilsluttet prøv igen. \r\n";
+
+            using (var ConsoleOutput = new ConsoleOutput())
+            {
+                _uut.CloseDoorErrorMsg();
+                Assert.AreEqual(text, ConsoleOutput.GetOuput());
+            }
+
+            Assert.AreEqual(CurrentConsoleOut, Console.Out);
+        }
+
+        [Test]
+        public void TestAfUnlockDoorMsg()
+        {
+            var CurrentConsoleOut = Console.Out;
+
+            string text = "Tag din telefon ud af skabet og luk døren. \r\n";
+
+            using (var ConsoleOutput = new ConsoleOutput())
+            {
+                _uut.UnlockDoorMsg();
+                Assert.AreEqual(text, ConsoleOutput.GetOuput());
+            }
+
+            Assert.AreEqual(CurrentConsoleOut, Console.Out);
+        }
+
+        [Test]
+        public void TestAfUnlockDoorErrorMsg()
+        {
+            var CurrentConsoleOut = Console.Out;
+
+            string text = "Forkert RFID prøv igen. \r\n";
+
+            using (var ConsoleOutput = new ConsoleOutput())
+            {
+                _uut.UnlockDoorErrorMsg();
+                Assert.AreEqual(text, ConsoleOutput.GetOuput());
+            }
+
+            Assert.AreEqual(CurrentConsoleOut, Console.Out);
+        }
+
+        [Test]
+        public void TestAfFullycharged()
+        {
+            var CurrentConsoleOut = Console.Out;
+
+            string text = "Telefon er fuld opladet. \r\n";
+
+            using (var ConsoleOutput = new ConsoleOutput())
+            {
+                _uut.Fullycharged();
+                Assert.AreEqual(text, ConsoleOutput.GetOuput());
+            }
+
+            Assert.AreEqual(CurrentConsoleOut, Console.Out);
+        }
+
+        [Test]
+        public void TestAfOpladning()
+        {
+            var CurrentConsoleOut = Console.Out;
+
+            string text = "Telefonen er under opladning. \r\n";
+
+            using (var ConsoleOutput = new ConsoleOutput())
+            {
+                _uut.Opladning();
+                Assert.AreEqual(text, ConsoleOutput.GetOuput());
+            }
+
+            Assert.AreEqual(CurrentConsoleOut, Console.Out);
+        }
+
+        [Test]
+        public void TestAfErrorMsgCharge()
+        {
+            var CurrentConsoleOut = Console.Out;
+
+            string text = "Error, Træk stikket ud. \r\n";
+
+            using (var ConsoleOutput = new ConsoleOutput())
+            {
+                _uut.ErrorMsgCharge();
+                Assert.AreEqual(text, ConsoleOutput.GetOuput());
+            }
+
+            Assert.AreEqual(CurrentConsoleOut, Console.Out);
+        }
     }
 }
