@@ -14,7 +14,7 @@ namespace Ladeskab
 			LogFile logFile = new LogFile();
 			Door door = new Door();
 			UsbChargerSimulator usbCharger = new UsbChargerSimulator();
-			ChargeControl chargeControl = new ChargeControl(usbCharger);
+			ChargeControl chargeControl = new ChargeControl(usbCharger, display);
 			StationControl controller = new StationControl(
 				display,
 				logFile,
@@ -38,11 +38,11 @@ namespace Ladeskab
                         break;
 
                     case 'O':
-                        //door.OnDoorOpen();
+                        door.openDoor();
                         break;
 
                     case 'C':
-                        //door.OnDoorClose();
+                        door.closeDoor();
                         break;
 
                     case 'R':
