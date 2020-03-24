@@ -4,11 +4,11 @@ namespace Ladeskab
 {
     public interface IDoor
     {
-        public event EventHandler DoorOpened;
-        public event EventHandler DoorClosed;
+        event EventHandler DoorOpened;
+        event EventHandler DoorClosed;
         
-        public void LockDoor();
-        public void UnlockDoor();
+        void LockDoor();
+        void UnlockDoor();
         
     }
 

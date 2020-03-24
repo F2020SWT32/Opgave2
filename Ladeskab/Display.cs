@@ -55,23 +55,23 @@ namespace Ladeskab
     public interface IDisplay
     {
 
-        public void RFIDMsg();
+        void RFIDMsg();
 
-        public void ConnectMsg();
+        void ConnectMsg();
 
-        public void CloseDoorMsg();
+        void CloseDoorMsg();
 
-        public void CloseDoorErrorMsg();
+        void CloseDoorErrorMsg();
 
-        public void UnlockDoorMsg();
+        void UnlockDoorMsg();
 
-        public void UnlockDoorErrorMsg();
+        void UnlockDoorErrorMsg();
 
-        public void Fullycharged();
+        void Fullycharged();
 
-        public void Opladning();
+        void Opladning();
 
-        public void ErrorMsgCharge();
+        void ErrorMsgCharge();
     }
 
 

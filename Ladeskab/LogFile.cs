@@ -31,6 +31,6 @@ namespace Ladeskab
 
 	public interface ILogFile
 	{
-		public void logWrite(int arg, int rfid);
+		void logWrite(int arg, int rfid);
 	}
 }
