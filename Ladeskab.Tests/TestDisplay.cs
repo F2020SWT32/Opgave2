@@ -160,7 +160,7 @@ namespace Ladeskab.Tests
         }
 
         [Test]
-        public void TestAfOpladning()
+        public void TestAfCharging()
         {
             var CurrentConsoleOut = Console.Out;
 
@@ -168,7 +168,7 @@ namespace Ladeskab.Tests
 
             using (var ConsoleOutput = new ConsoleOutput())
             {
-                _uut.Opladning();
+                _uut.Charging();
                 Assert.AreEqual(text, ConsoleOutput.GetOuput());
             }
 

@@ -41,7 +41,7 @@ namespace Ladeskab
             Console.WriteLine("Telefon er fuld opladet. ");
         }
 
-        public void Opladning()
+        public void Charging()
         {
             Console.WriteLine("Telefonen er under opladning. ");
         }
@@ -69,7 +69,7 @@ namespace Ladeskab
 
         void Fullycharged();
 
-        void Opladning();
+        void Charging();
 
         void ErrorMsgCharge();
     }
