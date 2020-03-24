@@ -27,7 +27,7 @@ namespace Ladeskab
         private IRfidReader _reader;
 
 
-        public StationControl(IDisplay _display, ILogFile _log, IChargeControl _chargecontrol, IDoor _door, IRfidReader _reader)
+        public StationControl(IDisplay _display, ILogFile _log, IChargeControl _chargeControl, IDoor _door, IRfidReader _reader)
         {
             this._display = _display;
             this._log = _log;
