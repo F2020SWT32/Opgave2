@@ -7,18 +7,27 @@ namespace Ladeskab
 	{
 		
 		private IUsbCharger _usbCharger;
-		//private IDisplay _display;
+		private IDisplay _display;
 		
-		public ChargeControl(IUsbCharger usbCharger/*, IDisplay display*/)
+		public ChargeControl(IUsbCharger usbCharger, IDisplay display)
 		{
 			_usbCharger = usbCharger;
-			//_display = display;
+			_display = display;
 			usbCharger.CurrentValueEvent += CurrentValueEventHandler;
 		}
 		
 		private void CurrentValueEventHandler(object sender, CurrentEventArgs args)
 		{
-			// TODO: display charging status
+			double current = args.Current;
+
+			if (current == 0)
+				_display.ConnectMsg();
+			else if (current > 0 && current <= 5)
+				_display.Fullycharged();
+			else if (current > 5 && current <= 500)
+				_display.Charging();
+			else if (current > 500)
+				_display.ErrorMsgCharge();
 		}
 		
 		public bool IsConnected()
