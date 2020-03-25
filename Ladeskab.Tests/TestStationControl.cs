@@ -27,6 +27,11 @@ namespace Ladeskab.Tests
         public void setup()
         {
             _uut = new StationControl(display, logfile, chargeControl, door, reader);
+            display.ClearReceivedCalls();
+            logfile.ClearReceivedCalls();
+            chargeControl.ClearReceivedCalls();
+            door.ClearReceivedCalls();
+            reader.ClearReceivedCalls();
         }
 
         [Test]
@@ -42,9 +47,9 @@ namespace Ladeskab.Tests
         [Test]
         public void testDoorClosedHandler()
         {
-
+            
             door.DoorClosed += Raise.EventWith(new object(), new EventArgs());
-            display.Received(2).RFIDMsg();
+            display.Received().RFIDMsg();
             Assert.AreEqual("Available", _uut.state.ToString());
         }
         [Test]
@@ -65,6 +70,39 @@ namespace Ladeskab.Tests
             chargeControl.IsConnected().Returns(false);
             reader.RfidDetected += Raise.EventWith(new object(), new RfidDetectedEventArgs(123));
             display.Received().CloseDoorErrorMsg();
+        }
+
+        [Test]
+        public void RfidOpen()
+        {
+            door.DoorOpened += Raise.EventWith(new object(), new EventArgs());
+            reader.RfidDetected += Raise.EventWith(new object(), new RfidDetectedEventArgs(1));
+            door.DidNotReceive().UnlockDoor();
+            door.DidNotReceive().LockDoor();
+            display.DidNotReceive().CloseDoorErrorMsg();
+            display.DidNotReceive().UnlockDoorErrorMsg();
+        }
+
+        [Test]
+
+        public void RfidLockedCorrect()
+        {
+            reader.RfidDetected += Raise.EventWith(new object(), new RfidDetectedEventArgs(222));
+            reader.RfidDetected += Raise.EventWith(new object(), new RfidDetectedEventArgs(222));
+            chargeControl.Received().StopCharge();
+            door.Received().UnlockDoor();
+            logfile.Received().logWrite(2, 222);
+            display.Received().UnlockDoorMsg();
+            Assert.AreEqual("Available", _uut.state.ToString());
+        }
+
+        [Test]
+        public void RfidLockedError()
+        {
+            reader.RfidDetected += Raise.EventWith(new object(), new RfidDetectedEventArgs(222));
+            reader.RfidDetected += Raise.EventWith(new object(), new RfidDetectedEventArgs(111));
+            display.Received().UnlockDoorErrorMsg();
+            Assert.AreEqual("Locked", _uut.state.ToString());
         }
     }
 
